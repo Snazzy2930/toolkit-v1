@@ -13,7 +13,8 @@ namespace toolkit_v1
     public partial class Form1 : Form
     {
         float timer = 0;
-
+        int countdown = 0;
+        Random rnd = new Random();
         public Form1()
         {
             InitializeComponent();
@@ -142,6 +143,55 @@ namespace toolkit_v1
                 listBox2.Items.Add(temp);
                 textBox4.Text = "";
             }
+        }
+
+        private void button13_Click(object sender, EventArgs e) //start
+        {
+            try
+            {
+                countdown = Convert.ToInt32(textBox8.Text);
+                timer3.Enabled = true;
+            }
+            catch (Exception) { }
+        }
+
+        private void button11_Click(object sender, EventArgs e) //stop
+        {
+            timer3.Enabled = false;
+        }
+
+        private void button12_Click(object sender, EventArgs e) //reset
+        {
+            countdown = 0;
+            textBox8.Text = countdown.ToString();
+        }
+
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            if (countdown > 0)
+            {
+                countdown--;
+                textBox8.Text = countdown.ToString();
+            }
+            else
+            {
+                timer3.Enabled = false;
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e) //6
+        {
+            textBox5.Text = rnd.Next(1, 7).ToString();
+        }
+
+        private void button9_Click(object sender, EventArgs e) //8
+        {
+            textBox6.Text = rnd.Next(1, 9).ToString();
+        }
+
+        private void button10_Click(object sender, EventArgs e) //12
+        {
+            textBox7.Text = rnd.Next(1, 13).ToString();
         }
     }
 }
